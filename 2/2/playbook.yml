@@ -1,0 +1,63 @@
+---
+
+- name: test
+  hosts: all
+  become: no
+
+  vars:
+    dirPath: /home/mftiedu/zimenkov/ansible
+
+  tasks:
+  
+    - name: Check packages
+      package_facts:
+        manager: "auto"
+    
+    - block: #======СentOs======
+      - name: Install python
+        yum:
+          name: python3 
+          state: latest
+        when: "'python3' not in ansible_facts.packages"
+      - name: Install pip
+        yum:
+          name: python3-pip
+          state: latest
+        when: "'python3-pip' not in ansible_facts.packages"
+      when: ansible_os_family == "RedHat"
+      become: yes
+      
+    - block: #======Debian======
+      - name: Install python
+        apt:
+          name: python3 
+          state: latest
+        when: "'python3' not in ansible_facts.packages"
+      - name: Install pip
+        apt:
+          name: python3-pip
+          state: latest
+        when: "'python3-pip' not in ansible_facts.packages"
+      when: ansible_os_family == "Debian"
+      become: yes
+    
+    - block: #=====pip======
+      - name: Install numpy
+        pip:
+          name: numpy
+          state: latest
+        when: "'numpy' not in ansible_facts.packages"
+      - name: Install pandas
+        pip:
+          name: pandas
+          state: latest
+        when: "'pandas' not in ansible_facts.packages"
+      become: yes
+    
+    - block: #=====copy=====
+      - name: Copy src
+        copy:
+          src: ./src
+          dest: "{{ dirPath }}"
+
+...

@@ -1,0 +1,25 @@
+---
+
+- name: Start nginx
+  hosts: all
+  become: yes
+  
+  tasks:
+    - name: Install nginx on CentOs
+      yum:
+        name: nginx
+        state: latest
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install nginx on Debian
+      apt:
+        name: nginx
+        state: latest
+      when: ansible_os_family == 'Debian'
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+
+...
