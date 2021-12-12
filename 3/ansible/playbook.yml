@@ -4,15 +4,12 @@
   hosts: all
   become: no
 
-  vars:
-    dirPath: /home/mftiedu/zimenkov/jenkins
-
   tasks:
     
     - block: #=====copy=====
       - name: Copy src
         copy:
-          src: ../../3
-          dest: "{{ dirPath }}"
+          src: ../target/Calculator-1.0-SNAPSHOT.jar
+          dest: /home/mftiedu/zimenkov/jenkins/Application.jar
 
 ...
