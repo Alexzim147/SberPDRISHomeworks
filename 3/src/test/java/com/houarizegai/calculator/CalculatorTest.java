@@ -4,15 +4,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class CalculatorTest {
-
-    private Calculator calculator;
-
+public class CalculatorTest {
     /*
      * testCalc() test method
      */
     @Test
-    void testCalc() {
+    public void testCalc() {
         Calculator calculator = new Calculator();
         double first = 3;
         String second = "5";
