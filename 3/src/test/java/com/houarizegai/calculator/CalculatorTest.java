@@ -8,16 +8,12 @@ class CalculatorTest {
 
     private Calculator calculator;
 
-    @BeforeEach
-    void setUp() { // Create object before compilation
-        calculator = new Calculator();
-    }
-
     /*
      * testCalc() test method
      */
     @Test
     void testCalc() {
+        Calculator calculator = new Calculator();
         double first = 3;
         String second = "5";
 
