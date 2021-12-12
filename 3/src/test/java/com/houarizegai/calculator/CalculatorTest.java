@@ -15,7 +15,7 @@ public class CalculatorTest {
         double second = 5;
 
         try {
-            assertEquals(8, calculator.add(first, second));
+            assertEquals(8, calculator.add(first, second), 0.1);
         } catch (Exception e) {
             e.printStackTrace();
         }
