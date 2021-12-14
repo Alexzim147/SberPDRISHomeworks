@@ -1,0 +1,15 @@
+version: "3.8"
+
+
+services:
+  server:
+    container_name: server
+    build: server/
+    ports:
+      - "9090:9090"
+      
+  client:
+    container_name: client
+    build: client/
+    depends_on:
+      - server
